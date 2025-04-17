@@ -25,9 +25,7 @@
 |Prettying Clinic Info|
 |:---:|
 |<img src="/public/images/exscreen.png" width="600"/>|
-|상단에 Header, 하단에 Footer, 좌측에는 병원 카드 리스트, 우측엔 병원 디테일 카드로 구성되어  
-페이지 이동 없이 필수 정보들만 조회 가능하도록 제작했습니다.  
-Footer와 Header에는 App 다운을 유도하는 버튼과 QR을 배치하였습니다.|
+|상단에 Header, 하단에 Footer, 좌측에는 병원 카드 리스트, 우측엔 병원 디테일 카드로 구성되어 페이지 이동 없이 필수 정보들만 조회 가능하도록 제작했습니다. Footer와 Header에는 App 다운을 유도하는 버튼과 QR을 배치하였습니다.|
 
 <br />
 
