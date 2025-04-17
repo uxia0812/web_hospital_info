@@ -1,72 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../styles/components/GoogleMapComponent.css';
 
 function GoogleMapComponent({ address }) {
   const mapRef = useRef(null);
+  const [loadingError, setLoadingError] = useState(false); // 에러 상태 관리용 state
   const apiKey = 'AIzaSyArOmpe4FcCZXo5Bba6UY-7yWtdyOXKORQ'; 
 
-  useEffect(() => {
-    // 실제 Google Maps API를 사용하려면 스크립트를 동적으로 로드
-    const loadGoogleMapsScript = () => {
-      if (window.google) {
-        initMap(); // Google Maps API가 이미 로드된 경우 바로 초기화
-        return;
-      }
-
-      const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
-      script.async = true; // 비동기 로딩
-      script.defer = true; // 비동기 로딩이 끝날 때까지 DOM 로딩 대기
-      script.onload = initMap; // API 로드 후 initMap 함수 실행
-      document.head.appendChild(script);
-    };
-
-    // 지도 초기화 함수
-    const initMap = () => {
-      if (window.google && window.google.maps) {
-        const geocoder = new window.google.maps.Geocoder();
-        const map = new window.google.maps.Map(mapRef.current, {
-          center: { lat: 37.5665, lng: 126.9780 }, // 서울 기본 좌표
-          zoom: 16,
-          mapTypeControl: false,
-          streetViewControl: false,
-          fullscreenControl: true,
-        });
-
-        // 주소로 위치 찾기
-        geocoder.geocode({ address: address }, (results, status) => {
-          if (status === 'OK' && results[0]) {
-            const location = results[0].geometry.location;
-            map.setCenter(location);
-            
-            // 마커 추가
-            new window.google.maps.Marker({
-              map: map,
-              position: location,
-              animation: window.google.maps.Animation.DROP
-            });
-          }
-        });
-      } else {
-          console.error('Google Maps API 로딩 실패');
-        }
-    };
-
-    // API 키가 있을 경우 구글 맵 로드
-    if (apiKey == 'AIzaSyArOmpe4FcCZXo5Bba6UY-7yWtdyOXKORQ') {
-      loadGoogleMapsScript();
-    } else {
-      // API 키가 없는 경우 대체 지도 표시
-      renderStaticMap();
-    }
-
-  // clean up function: 이 컴포넌트가 언마운트 될 때 스크립트를 제거
-      return () => {
-        const scriptElements = document.querySelectorAll('script[src^="https://maps.googleapis.com/maps/api/js"]');
-        scriptElements.forEach(script => script.remove());  // 중복 로딩 방지
-      };
-
-    }, [address, apiKey]);  // 주소나 API 키가 변경될 때마다 다시 실행
+// ✨ 수정: renderStaticMap 함수를 useEffect 위로 이동
 
   // API 키가 없을 때 대체 지도
   const renderStaticMap = () => {
@@ -128,12 +68,98 @@ function GoogleMapComponent({ address }) {
     }
   };
 
+  useEffect(() => {
+    // 실제 Google Maps API를 사용하려면 스크립트를 동적으로 로드
+    const loadGoogleMapsScript = () => {
+      if (window.google && window.google.maps) {
+        initMap(); // Google Maps API가 이미 로드된 경우 바로 초기화
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+      script.async = true; // 비동기 로딩
+      script.defer = true; // 비동기 로딩이 끝날 때까지 DOM 로딩 대기
+      script.onload = () => {
+
+        // API 로드 후 initMap 호출
+        if (window.google && window.google.maps) {
+          initMap();
+        } else {
+          console.error('Google Maps API 로딩 실패');
+          setLoadingError(true); // 로딩 실패 처리
+        }
+      };
+      script.onerror = () => {
+        console.error('Google Maps API 스크립트 로드 오류');
+        setLoadingError(true); // 로드 오류 처리
+      }
+      document.head.appendChild(script);
+    };
+
+    // 지도 초기화 함수
+    const initMap = () => {
+      if (window.google && window.google.maps) {
+        console.error('Google Maps API 로딩 실패');
+        setLoadingError(true); // 로딩 실패 시 에러상태 설정
+        return;
+      }
+        const geocoder = new window.google.maps.Geocoder();
+        const map = new window.google.maps.Map(mapRef.current, {
+          center: { lat: 37.5665, lng: 126.9780 }, // 서울 기본 좌표
+          zoom: 16,
+          mapTypeControl: false,
+          streetViewControl: false,
+          fullscreenControl: true,
+        });
+
+        // 주소로 위치 찾기
+        geocoder.geocode({ address: address }, (results, status) => {
+          if (status === 'OK' && results[0]) {
+            const location = results[0].geometry.location;
+            map.setCenter(location);
+            
+            // 마커 추가
+            new window.google.maps.Marker({
+              map: map,
+              position: location,
+              animation: window.google.maps.Animation.DROP
+            });
+          } else {
+            console.error('Geocode 실패 : ' + status)
+            setLoadingError(true); // 에러 발생 시 상태 설정
+          }
+        });
+    };
+
+    // API 키가 존재하면 구글 맵 로드
+    if (apiKey) {
+      loadGoogleMapsScript();
+    } else {
+      // API 키가 없는 경우 대체 지도 표시
+      renderStaticMap();
+    }
+
+  // clean up function: 이 컴포넌트가 언마운트 시 스크립트 제거
+      return () => {
+        const scriptElements = document.querySelectorAll('script[src^="https://maps.googleapis.com/maps/api/js"]');
+        scriptElements.forEach(script => script.remove());  // 중복 로딩 방지
+      };
+    // renderStaticMap 함수가 useEffect의 의존성 배열에 포함되어야함
+    }, [address, apiKey]);  // 주소나 API 키가 변경될 때마다 다시 실행
+
   return (
     <div className="google-map-container"> 
-      {apiKey === ' ' ? (
-        <canvas ref={mapRef} className="google-map-canvas" />
+      {loadingError ? (
+        <div>Google Maps를 불러올 수 없습니다. 다시 시도해주세요.</div>
       ) : (
-        <div ref={mapRef} className="google-map" />
+        <>
+          {apiKey === '' ? (
+            <canvas ref={mapRef} className='google-map-canvas' />
+          ) : (
+            <div ref={mapRef} className='google-map' />
+          )}
+        </>
       )}
     </div>
   );
