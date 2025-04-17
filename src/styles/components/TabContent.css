@@ -1,0 +1,144 @@
+/* 병원 소개 탭 */
+.intro-content {
+    /* padding: 1rem 0; */
+  }
+  
+  .intro-title {
+    font-size: 18px;
+    margin-bottom: 1rem;
+  }
+  
+  .intro-points {
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .intro-point {
+    margin-bottom: 0.5rem;
+  }
+  
+  .intro-conclusion {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  /* 운영시간 탭 */
+  .schedule-content {
+    padding: 1rem 0;
+  }
+  
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .schedule-table th, .schedule-table td {
+    padding: 0.6rem;
+    text-align: center;
+    font-size: 14px;
+    border-bottom: 1px solid #eaeaea;
+  }
+  
+  .schedule-table th {
+    background-color: #f9f9f9;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  
+  .schedule-table td.closed {
+    color: #ff0000;
+    font-weight: 500;
+  }
+  
+  /* 주소 탭 */
+  .location-content {
+    padding: 1rem 0;
+  }
+
+  .map {
+    height: 350px;
+    background-color: #f5f5f5;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .address-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .address-text {
+    color: #666;
+    font-size: 14px;
+    flex: 1;
+    margin: 0;
+  }
+
+  .copy-button {
+    background-color: #3182f6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.25rem 0.75rem;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-weight: 500;
+  }
+
+  .copy-button:hover {
+    background-color: #2970d6;
+  }
+
+  .address-detail {
+    font-size: 13px;
+    color: #888;
+    margin-top: 0.5rem;
+  }
+  
+  /* AI 인사이트 탭 */
+  .ai-insight-content {
+    position: relative;
+    background-color: #F2F4FA;
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+  
+  .ai-tag img {
+    width: 45px; 
+    height: 27px; 
+    margin-top: 0;
+    margin-right: 10px; 
+  }
+
+  .ai-tag {
+    display: flex;
+    align-items: center;
+  }
+  
+  .ai-title {
+    margin: 0;
+    font-size: 17px;
+    color: #254980;
+  }
+  
+  .ai-paragraph {
+    margin-bottom: 0.75rem;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .ai-disclaimer {
+    color: #999;
+    font-style: italic;
+    font-size: 12px;
+    margin-top: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .map {
+      height: 200px;
+    }
+  }

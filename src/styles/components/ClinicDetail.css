@@ -1,0 +1,122 @@
+.hospital-detail {
+  flex: 1;
+  padding: 2rem 3rem 7rem 3rem;
+  overflow-y: auto;
+  position: relative;
+  height: calc(100vh - 70px); /* 헤더 높이를 뺀 높이 */
+  
+}
+
+.hospital-header {
+  margin-bottom: 1.5rem;
+}
+
+.hospital-title {
+  margin: 0;
+  font-size: 24px;
+}
+
+.hospital-doctor {
+  color: #666;
+  font-size: 14px;
+  margin: 0.5rem 0 0 0;
+}
+
+.category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.category-tab {
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+  color: #333;
+  cursor: pointer;
+}
+
+.category-tab:hover {
+  background-color: #f9f9f9;
+}
+
+.content-tabs {
+  display: flex;
+  border-bottom: 1px solid #eaeaea;
+  margin-bottom: 1.5rem;
+}
+
+.content-tab {
+  padding: 0.75rem 2rem;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #666;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.content-tab.active {
+  color: #3182f6;
+  border-bottom-color: #3182f6;
+}
+
+.tab-content {
+  padding: 0 0;
+  margin-bottom: 15rem; /* 푸터와의 간격 */
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 30px; /* 헤더와 푸터의 차이 높이 차이만큼 추가 */
+  height: 100%;
+  color: #999;
+  text-align: center;
+}
+
+.empty-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 1rem;
+}
+
+.hospital-detail-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: #fff;
+  /* border-top: 1px solid #eaeaea; */
+}
+
+@media (max-width: 768px) {
+  .hospital-detail {
+    padding: 1rem;
+    height: auto;
+    max-height: calc(100vh - 370px); /* 헤더, 병원 목록 영역을 고려 */
+  }
+  
+  .content-tabs {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 0.5rem;
+  }
+  
+  .content-tab {
+    padding: 0.75rem 1rem;
+  }
+}
