@@ -36,7 +36,7 @@ export const hospitalData = [
       id: 2,
       name: '더새로이의원',
       category: '',
-      address: '서울 강남구 언주로 641 (논현동) 펜트힐루논현 2층 더새로이의원',
+      address: '서울 강남구 언주로 641 (논현동) 펜트힐루논현 2층',
       tags: ['지방성형', '필러', '보톡스', '피부', '리프팅', '기타'],
       image: '/images/clinic_images/더새로이의원04.jpg',
       images: [

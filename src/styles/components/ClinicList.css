@@ -39,10 +39,13 @@
   border: 1px solid #eaeaea;
   cursor: pointer;
   transition: all 0.2s ease;
+  height: 115px; /* 카드 높이 고정 */
 }
 
 .hospital-card:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  /* height: 115px; */
+  min-height: 115px; /* 최소 높이 */
 }
 
 .hospital-card.selected {
@@ -53,6 +56,7 @@
 .hospital-image {
   width: 80px;
   height: 80px;
+  min-width: 80px; /* 이미지 최소 너비 설정 */
   margin-right: 1rem;
   border-radius: 4px;
   overflow: hidden;
@@ -66,11 +70,17 @@
 
 .hospital-info {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* 내용이 넘치지 않도록 설정 */
 }
 
 .hospital-name {
   margin: 0 0 0.25rem 0;
   font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .hospital-category {
@@ -83,12 +93,22 @@
   margin: 0.25rem 0;
   font-size: 13px;
   color: #777;
+  white-space: nowrap; /* 주소가 한 줄로만 표시되도록 설정 */
+  overflow: hidden;
+  text-overflow: ellipsis; /* 넘치는 텍스트는 말줄임표로 표시 */
+  max-width: 100%; /* 부모 요소의 너비에 맞추기 */
 }
 
 .hospital-tags {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; 
   margin-top: 0.5rem;
+  /* overflow: hidden; 
+  max-height: 70px; 태그 영역 최대 높이 제한 (2줄) */
+}
+
+.tag-list-container {
+  width: 100%;   /* 부모 .hospital-tags 너비만큼 꽉 채움 */
 }
 
 .tag {
@@ -99,6 +119,11 @@
   margin-bottom: 0.5rem;
   font-size: 12px;
   color: #666;
+}
+
+.tag-more {
+  background-color: #e0e0e0;
+  color: #555;
 }
 
 @media (max-width: 768px) {
