@@ -732,230 +732,259 @@ const HospitalDataSheet = () => {
     },
   ];
 
-  // 모든 태그 추출하기
-  const allTags = useMemo(() => {
-    const tagSet = new Set();
-    hospitalData.forEach((hospital) => {
-      hospital.tags.forEach((tag) => tagSet.add(tag));
-    });
-    return Array.from(tagSet).sort();
-  }, []);
-
-  // 정렬 함수
-  const sortedData = useMemo(() => {
-    let sortableItems = [...hospitalData];
-    if (sortConfig.key) {
-      sortableItems.sort((a, b) => {
-        if (a[sortConfig.key] < b[sortConfig.key]) {
-          return sortConfig.direction === "ascending" ? -1 : 1;
-        }
-        if (a[sortConfig.key] > b[sortConfig.key]) {
-          return sortConfig.direction === "ascending" ? 1 : -1;
-        }
-        return 0;
+    // 모든 태그 추출하기
+    const allTags = useMemo(() => {
+      const tagSet = new Set();
+      hospitalData.forEach((hospital) => {
+        hospital.tags.forEach((tag) => tagSet.add(tag));
       });
-    }
-    return sortableItems;
-  }, [hospitalData, sortConfig]);
-
-  // 필터링된 데이터
-  const filteredData = useMemo(() => {
-    return sortedData.filter((hospital) => {
-      const matchesFilter =
-        hospital.name.toLowerCase().includes(filterText.toLowerCase()) ||
-        hospital.address.toLowerCase().includes(filterText.toLowerCase()) ||
-        hospital.doctor.toLowerCase().includes(filterText.toLowerCase()) ||
-        hospital.tags.some((tag) =>
-          tag.toLowerCase().includes(filterText.toLowerCase())
-        );
-
-      if (activeTab === "all") {
-        return matchesFilter;
-      } else {
-        return matchesFilter && hospital.tags.includes(activeTab);
+      return Array.from(tagSet).sort();
+    }, []);
+  
+    // 정렬 함수
+    const sortedData = useMemo(() => {
+      let sortableItems = [...hospitalData];
+      if (sortConfig.key) {
+        sortableItems.sort((a, b) => {
+          if (a[sortConfig.key] < b[sortConfig.key]) {
+            return sortConfig.direction === "ascending" ? -1 : 1;
+          }
+          if (a[sortConfig.key] > b[sortConfig.key]) {
+            return sortConfig.direction === "ascending" ? 1 : -1;
+          }
+          return 0;
+        });
       }
-    });
-  }, [sortedData, filterText, activeTab]);
-
-  // 정렬 요청 핸들러
-  const requestSort = (key) => {
-    let direction = "ascending";
-    if (sortConfig.key === key && sortConfig.direction === "ascending") {
-      direction = "descending";
-    }
-    setSortConfig({ key, direction });
-  };
-
-  // 헤더에 정렬 상태 표시
-  const getClassNamesFor = (name) => {
-    if (!sortConfig) {
-      return;
-    }
-    return sortConfig.key === name ? sortConfig.direction : undefined;
-  };
-
-  return (
-    <div className="p-4 bg-gray-50 min-h-screen">
-      <h1 className="text-3xl font-bold mb-6 text-center text-indigo-700">
-        병원 정보 시트
-      </h1>
-
-      {/* 검색 및 필터링 */}
-      <div className="mb-6">
-        <div className="flex flex-wrap items-center gap-4 mb-4">
-          <input
-            type="text"
-            placeholder="병원명, 주소, 의사, 태그 검색..."
-            className="px-4 py-2 border rounded-lg flex-grow"
-            value={filterText}
-            onChange={(e) => setFilterText(e.target.value)}
-          />
-        </div>
-
-        {/* 태그 필터링 탭 */}
-        <div className="overflow-x-auto pb-2">
-          <div className="flex space-x-1">
-            <button
-              className={`px-3 py-1 rounded-lg text-sm whitespace-nowrap ${
-                activeTab === "all"
-                  ? "bg-indigo-600 text-white"
-                  : "bg-gray-200 hover:bg-gray-300"
-              }`}
-              onClick={() => setActiveTab("all")}
-            >
-              전체
-            </button>
-            {allTags.map((tag) => (
+      return sortableItems;
+    }, [hospitalData, sortConfig]);
+  
+    // 필터링된 데이터
+    const filteredData = useMemo(() => {
+      return sortedData.filter((hospital) => {
+        const matchesFilter =
+          hospital.name.toLowerCase().includes(filterText.toLowerCase()) ||
+          hospital.address.toLowerCase().includes(filterText.toLowerCase()) ||
+          hospital.doctor.toLowerCase().includes(filterText.toLowerCase()) ||
+          hospital.tags.some((tag) =>
+            tag.toLowerCase().includes(filterText.toLowerCase())
+          );
+  
+        if (activeTab === "all") {
+          return matchesFilter;
+        } else {
+          return matchesFilter && hospital.tags.includes(activeTab);
+        }
+      });
+    }, [sortedData, filterText, activeTab]);
+  
+    // 정렬 요청 핸들러
+    const requestSort = (key) => {
+      let direction = "ascending";
+      if (sortConfig.key === key && sortConfig.direction === "ascending") {
+        direction = "descending";
+      }
+      setSortConfig({ key, direction });
+    };
+  
+    // 헤더에 정렬 상태 표시
+    const getClassNamesFor = (name) => {
+      if (!sortConfig) {
+        return;
+      }
+      return sortConfig.key === name ? sortConfig.direction : undefined;
+    };
+  
+    // 아코디언 토글 함수
+    const toggleAccordion = (id) => {
+      if (activeHospitalId === id) {
+        setActiveHospitalId(null); // 클릭한 병원이 이미 활성화 되어 있으면 비활성화
+      } else {
+        setActiveHospitalId(id); // 클릭한 병원만 활성화
+      }
+    };
+  
+    return (
+      <div className="p-4 bg-gray-50 min-h-screen">
+        <h1 className="text-3xl font-bold mb-6 text-center text-indigo-700">
+          병원 정보 시트
+        </h1>
+  
+        {/* 검색 및 필터링 */}
+        <div className="mb-6">
+          <div className="flex flex-wrap items-center gap-4 mb-4">
+            <input
+              type="text"
+              placeholder="병원명, 주소, 의사, 태그 검색..."
+              className="px-4 py-2 border rounded-lg flex-grow"
+              value={filterText}
+              onChange={(e) => setFilterText(e.target.value)}
+            />
+          </div>
+  
+          {/* 태그 필터링 탭 */}
+          <div className="overflow-x-auto pb-2">
+            <div className="flex space-x-1">
               <button
-                key={tag}
                 className={`px-3 py-1 rounded-lg text-sm whitespace-nowrap ${
-                  activeTab === tag
+                  activeTab === "all"
                     ? "bg-indigo-600 text-white"
                     : "bg-gray-200 hover:bg-gray-300"
                 }`}
-                onClick={() => setActiveTab(tag)}
+                onClick={() => setActiveTab("all")}
               >
-                {tag}
+                전체
               </button>
-            ))}
+              {allTags.map((tag) => (
+                <button
+                  key={tag}
+                  className={`px-3 py-1 rounded-lg text-sm whitespace-nowrap ${
+                    activeTab === tag
+                      ? "bg-indigo-600 text-white"
+                      : "bg-gray-200 hover:bg-gray-300"
+                  }`}
+                  onClick={() => setActiveTab(tag)}
+                >
+                  {tag}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-
-      {/* 테이블 */}
-      <div className="overflow-x-auto bg-white rounded-lg shadow">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              <th
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                onClick={() => requestSort("id")}
-              >
-                <div className="flex items-center">
-                  번호
-                  <span
-                    className={`ml-1 ${
-                      getClassNamesFor("id") === "ascending"
-                        ? "transform rotate-180"
-                        : ""
-                    }`}
-                  >
-                    {getClassNamesFor("id") ? "▲" : "▼"}
-                  </span>
-                </div>
-              </th>
-              <th
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                onClick={() => requestSort("name")}
-              >
-                <div className="flex items-center">
-                  병원명
-                  <span
-                    className={`ml-1 ${
-                      getClassNamesFor("name") === "ascending"
-                        ? "transform rotate-180"
-                        : ""
-                    }`}
-                  >
-                    {getClassNamesFor("name") ? "▲" : "▼"}
-                  </span>
-                </div>
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                주소
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                태그
-              </th>
-              <th
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                onClick={() => requestSort("doctor")}
-              >
-                <div className="flex items-center">
-                  대표원장
-                  <span
-                    className={`ml-1 ${
-                      getClassNamesFor("doctor") === "ascending"
-                        ? "transform rotate-180"
-                        : ""
-                    }`}
-                  >
-                    {getClassNamesFor("doctor") ? "▲" : "▼"}
-                  </span>
-                </div>
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                운영시간
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {filteredData.map((hospital) => (
-              <tr key={hospital.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {hospital.id}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm font-medium text-gray-900">
-                    {hospital.name}
+  
+        {/* 테이블 */}
+        <div className="overflow-x-auto bg-white rounded-lg shadow">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                  onClick={() => requestSort("id")}
+                >
+                  <div className="flex items-center">
+                    번호
+                    <span
+                      className={`ml-1 ${
+                        getClassNamesFor("id") === "ascending"
+                          ? "transform rotate-180"
+                          : ""
+                      }`}
+                    >
+                      {getClassNamesFor("id") ? "▲" : "▼"}
+                    </span>
                   </div>
-                </td>
-                <td className="px-6 py-4">
-                  <div className="text-sm text-gray-500">
-                    {hospital.address}
+                </th>
+                <th
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                  onClick={() => requestSort("name")}
+                >
+                  <div className="flex items-center">
+                    병원명
+                    <span
+                      className={`ml-1 ${
+                        getClassNamesFor("name") === "ascending"
+                          ? "transform rotate-180"
+                          : ""
+                      }`}
+                    >
+                      {getClassNamesFor("name") ? "▲" : "▼"}
+                    </span>
                   </div>
-                </td>
-                <td className="px-6 py-4">
-                  <div className="flex flex-wrap gap-1">
-                    {hospital.tags.map((tag) => (
-                      <span
-                        key={`${hospital.id}-${tag}`}
-                        className="px-2 py-1 text-xs rounded-full bg-indigo-100 text-indigo-800"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  주소
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  태그
+                </th>
+                <th
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                  onClick={() => requestSort("doctor")}
+                >
+                  <div className="flex items-center">
+                    대표원장
+                    <span
+                      className={`ml-1 ${
+                        getClassNamesFor("doctor") === "ascending"
+                          ? "transform rotate-180"
+                          : ""
+                      }`}
+                    >
+                      {getClassNamesFor("doctor") ? "▲" : "▼"}
+                    </span>
                   </div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-gray-900">{hospital.doctor}</div>
-                </td>
-                <td className="px-6 py-4">
-                  <div className="text-sm text-gray-500">
-                    {hospital.operatingHours}
-                  </div>
-                </td>
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  운영시간
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {filteredData.map((hospital) => (
+                <tr key={hospital.id} className="hover:bg-gray-50">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {hospital.id}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm font-medium text-gray-900">
+                      <button
+                        onClick={() => toggleAccordion(hospital.id)}
+                        className="text-indigo-600"
+                      >
+                        {hospital.name}
+                      </button>
+                    </div>
+                    {activeHospitalId === hospital.id && (
+                      <div className="mt-2 pl-6">
+                        <div className="text-sm text-gray-500">
+                          <strong>Intro:</strong>
+                          <div>{hospital.intro.title}</div>
+                          <div>{hospital.intro.conclusion}</div>
+                        </div>
+                        <div className="text-sm text-gray-500 mt-2">
+                          <strong>AI Insights:</strong>
+                          {hospital.aiInsight.paragraphs.map((paragraph, index) => (
+                            <p key={index}>{paragraph}</p>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="text-sm text-gray-500">
+                      {hospital.address}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="flex flex-wrap gap-1">
+                      {hospital.tags.map((tag) => (
+                        <span
+                          key={`${hospital.id}-${tag}`}
+                          className="px-2 py-1 text-xs rounded-full bg-indigo-100 text-indigo-800"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm text-gray-900">{hospital.doctor}</div>
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="text-sm text-gray-500">
+                      {hospital.operatingHours}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+  
+        <div className="mt-4 text-sm text-gray-500">
+          총 {filteredData.length}개 병원 (전체 {hospitalData.length}개 중)
+        </div>
       </div>
-
-      <div className="mt-4 text-sm text-gray-500">
-        총 {filteredData.length}개 병원 (전체 {hospitalData.length}개 중)
-      </div>
-    </div>
-  );
-};
-
-export default HospitalDataSheet;
+    );
+  };
+  
+  export default HospitalDataSheet;
