@@ -13,9 +13,8 @@
 프리팅 입점 병원 정보가 검색엔진에 노출되기 위해 만든 웹페이지입니다.
 상세 정보는 App을 다운받아 볼 수 있도록 유도하기 위해 필수적인 정보들로만 간략하게 볼 수 있도록 구성했습니다.
 
-다음과 같은 내용을 작성할 수 있습니다.
 - 프로젝트 소개
-- 프로젝트 화면 구성
+- 화면 구성
 - 사용한 기술 스택
 - 기술적 이슈와 해결 과정
 
@@ -25,7 +24,7 @@
 |Prettying Clinic Info|
 |:---:|
 |<img src="/public/images/exscreen.png" width="600"/>|
-|상단에 Header, 하단에 Footer, 좌측에는 병원 카드 리스트, 우측엔 병원 디테일 카드로 구성되어 페이지 이동 없이 필수 정보들만 조회 가능하도록 제작했습니다. Footer와 Header에는 App 다운을 유도하는 버튼과 QR을 배치하였습니다.|
+|Header, Footer, 좌측에는 병원 카드 리스트, 우측엔 병원 디테일 카드로 구성되어 페이지 이동 없이 필수 정보들만 조회 가능하도록 제작했습니다. Footer와 Header에는 App 다운을 유도하는 버튼과 QR을 배치하였습니다.|
 
 <br />
 
@@ -53,3 +52,4 @@
 ## 🤔 기술적 이슈와 해결 과정
 - 작업 로그
     - [Notion Log](https://curved-cobalt-671.notion.site/net-Hospital-Info-1d03c4f03a73800fa5baca6be89e55fb?pvs=4)
+    - [Google Maps API 오류](https://xia-it.tistory.com/153)
