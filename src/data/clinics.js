@@ -5,7 +5,7 @@ export const hospitalData = [
     category: "",
     address: "서울 강남구 강남대로 616 (신사동, 신사미타워) 15층 공간성형외과",
     tags: ["코성형", "눈성형", "필러", "리프팅", "지방성형"],
-    image: "/images/clinic_images/공간성형외과01.jpg",
+    image: "/images/clinic_images/공간성형외과로고.jpg",
     images: [
       "/images/clinic_images/공간성형외과01.jpg",
       "/images/clinic_images/공간성형외과02.svg",
@@ -61,7 +61,7 @@ export const hospitalData = [
     category: "",
     address: "서울 강남구 언주로 641 (논현동) 펜트힐루논현 2층",
     tags: ["지방성형", "필러", "보톡스", "피부", "리프팅", "기타"],
-    image: "/images/clinic_images/더새로이의원04.jpg",
+    image: "/images/clinic_images/더새로이로고.jpg",
     images: [
       "/images/clinic_images/더새로이의원01.jpg",
       "/images/clinic_images/더새로이의원02.jpg",
@@ -131,7 +131,7 @@ export const hospitalData = [
       "필러",
       "리프팅",
     ],
-    image: "/images/clinic_images/그리다04.jpg",
+    image: "/images/clinic_images/그리다로고.png",
     images: [
       "/images/clinic_images/그리다01.jpg",
       "/images/clinic_images/그리다02.jpg",
@@ -190,7 +190,7 @@ export const hospitalData = [
     category: "",
     address: "서울 서초구 강남대로69길 8 6층",
     tags: ["필러", "보톡스", "리프팅", "피부"],
-    image: "/images/clinic_images/뉴스타의원05.jpg",
+    image: "/images/clinic_images/뉴스타로고.jpg",
     images: [
       "/images/clinic_images/뉴스타의원03.jpg",
       "/images/clinic_images/뉴스타의원04.jpg",
@@ -247,7 +247,7 @@ export const hospitalData = [
     category: "",
     address: "서울 송파구 올림픽로 108(잠실동, 맥스빌딩) 3층",
     tags: ["피부", "코성형", "보톡스", "필러", "리프팅"],
-    image: "/images/clinic_images/다태나의원01.jpg",
+    image: "/images/clinic_images/다태나로고.jpg",
     images: [
       "/images/clinic_images/다태나의원01.jpg",
       "/images/clinic_images/다태나의원02.jpg",
@@ -373,7 +373,7 @@ export const hospitalData = [
     category: "",
     address: "서울 강남구 논현로 843 EGI빌딩 3층",
     tags: ["코", "눈", "지방", "가슴", "안면", "필러", "보톡스", "리프팅"],
-    image: "/images/clinic_images/라이트성형외과05.jpg",
+    image: "/images/clinic_images/라이트로고.jpg",
     images: [
       "/images/clinic_images/라이트성형외과01.jpg",
       "/images/clinic_images/라이트성형외과02.jpg",
@@ -430,7 +430,7 @@ export const hospitalData = [
     address:
       "서울 서초구 강남대로 605(잠원동, 세양21세기 휴먼TOWER) 12층 1202호",
     tags: ["피부", "보톡스", "필러", "리프팅", "기타"],
-    image: "/images/clinic_images/레리의원01.jpg",
+    image: "/images/clinic_images/레리로고.jpg",
     images: [
       "/images/clinic_images/레리의원01.jpg",
       "/images/clinic_images/레리의원02.jpg",
@@ -557,7 +557,7 @@ export const hospitalData = [
       "필러",
       "보톡스",
     ],
-    image: "/images/clinic_images/마블성형외과의원01.jpg",
+    image: "/images/clinic_images/마블로고.jpg",
     images: [
       "/images/clinic_images/마블성형외과의원01.jpg",
       "/images/clinic_images/마블성형외과의원02.jpg",
@@ -616,7 +616,7 @@ export const hospitalData = [
     category: "",
     address: "서울 강남구 강남대로 616 신사미타워 B2",
     tags: ["코", "눈", "지방", "리프팅", "보톡스", "필러", "피부"],
-    image: "/images/clinic_images/마이셀의원.png",
+    image: "/images/clinic_images/마이셀로고.jpg",
     images: ["/images/clinic_images/마이셀의원.png"],
     doctor: "정의영 대표원장",
     intro: {
@@ -666,7 +666,7 @@ export const hospitalData = [
     category: "",
     address: "서울 강남구 논현로175길 6 (신사동) 4층, A호",
     tags: ["눈성형", "코성형", "가슴성형", "리프팅", "보톡스", "필러"],
-    image: "/images/clinic_images/메리성형외과01.jpg",
+    image: "/images/clinic_images/메리로고.jpg",
     images: [
       "/images/clinic_images/메리성형외과01.jpg",
       "/images/clinic_images/메리성형외과02.png",
@@ -732,7 +732,7 @@ export const hospitalData = [
       "필러",
       "보톡스",
     ],
-    image: "/images/clinic_images/미고성형외과01.jpg",
+    image: "/images/clinic_images/미고로고.jpg",
     images: [
       "/images/clinic_images/미고성형외과01.jpg",
       "/images/clinic_images/미고성형외과02.jpg",
@@ -798,7 +798,7 @@ export const hospitalData = [
       "보톡스",
       "리프팅",
     ],
-    image: "/images/clinic_images/미다스용산01.jpg",
+    image: "/images/clinic_images/미다스로고.png",
     images: [
       "/images/clinic_images/미다스용산01.jpg",
       "/images/clinic_images/미다스용산02.jpg",
@@ -919,7 +919,7 @@ export const hospitalData = [
     category: "",
     address: "서울 서초구 서초대로77길 24 (서초동, 강남 지웰타워2) 6층",
     tags: ["한방", "다이어트", "피부"],
-    image: "/images/clinic_images/shclinic01.jpg",
+    image: "/images/clinic_images/shlogo.png",
     images: [
       "/images/clinic_images/shclinic01.jpg",
       "/images/clinic_images/shclinic02.jpg",
@@ -976,7 +976,7 @@ export const hospitalData = [
     category: "",
     address: "서울 강남구 삼성로 730 (청담동) 2-4층",
     tags: ["눈성형", "리프팅", "필러", "보톡스", "지방성형", "피부"],
-    image: "/images/clinic_images/허쉬성형외과01.jpg",
+    image: "/images/clinic_images/허쉬로고.jpg",
     images: [
       "/images/clinic_images/허쉬성형외과01.jpg",
       "/images/clinic_images/허쉬성형외과02.jpg",
@@ -1224,7 +1224,7 @@ export const hospitalData = [
     category: "",
     address: "서울 마포구 양화로 140 (동교동) 3층",
     tags: ["피부", "보톡스", "필러", "리프팅", "제모", "기타"],
-    image: "/images/clinic_images/올라인의원01.jpg",
+    image: "/images/clinic_images/올라인로고.png",
     images: [
       "/images/clinic_images/올라인의원01.jpg",
       "/images/clinic_images/올라인의원02.jpg",

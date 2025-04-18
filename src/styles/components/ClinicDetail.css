@@ -1,6 +1,6 @@
 .hospital-detail {
   flex: 1;
-  padding: 2rem 3rem 7rem 3rem;
+  padding: 2.5rem 4rem 7rem 4rem;
   overflow-y: auto;
   position: relative;
   height: calc(100vh - 70px); /* 헤더 높이를 뺀 높이 */
@@ -57,7 +57,7 @@
   color: #666;
   cursor: pointer;
   font-size: 14px;
-  font-weight: 700;
+  
 }
 
 .content-tab.active {
