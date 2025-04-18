@@ -67,7 +67,7 @@
 
 .tab-content {
   padding: 0 0;
-  margin-bottom: 15rem; /* 푸터와의 간격 */
+  margin-bottom: 7rem; /* 푸터와의 간격 */
 }
 
 .empty-state {
@@ -105,7 +105,7 @@
 
 @media (max-width: 768px) {
   .hospital-detail {
-    padding: 1rem;
+    padding: 1rem 1rem 0 1rem;
     height: 66.67vh;
     max-height: none;
   }
