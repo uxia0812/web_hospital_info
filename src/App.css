@@ -9,6 +9,7 @@
   display: flex;
   flex: 1;
   overflow: hidden;
+  margin-top: 70px;
 }
 
 @media (max-width: 768px) {
