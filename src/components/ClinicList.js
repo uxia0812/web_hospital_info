@@ -74,18 +74,9 @@ function TagList({ tags }) {
 }
 
 function HospitalList({ hospitals, selectedHospital, onHospitalSelect }) {
-  const shuffledHospitals = useMemo(() => {
-    const shuffled = [...hospitals];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    return shuffled;
-  }, [hospitals]);
-
   return (
     <div className="hospital-list">
-      {shuffledHospitals.map((hospital) => (
+      {hospitals.map((hospital) => (
         <div
           key={hospital.id}
           className={`hospital-card ${selectedHospital && selectedHospital.id === hospital.id ? 'selected' : ''}`}
@@ -99,7 +90,7 @@ function HospitalList({ hospitals, selectedHospital, onHospitalSelect }) {
             <p className="hospital-category">{hospital.category}</p>
             <p className="hospital-address">{hospital.address}</p>
             <div className="hospital-tags">
-              <TagList tags={hospital.tags} /> {/* Modified: replaced renderTags with TagList */}
+              <TagList tags={hospital.tags} />
             </div>
           </div>
         </div>

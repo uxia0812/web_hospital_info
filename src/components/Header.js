@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/components/Header.css';
 
-function Header() {
+function Header({ onLogoClick }) {
   const handleLogoClick = () => {
     window.location.href = '/';
   };
