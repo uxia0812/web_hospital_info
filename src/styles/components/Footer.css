@@ -7,8 +7,8 @@
   left: 0;
   right: 0;
   height: 100px;
-  width: calc(100% - 380px); /* 리스트 영역 너비를 뺌 */
-  margin-left: 380px; /* 리스트 영역 너비만큼 오른쪽으로 이동 */
+  width: calc(100% - 380px);
+  margin-left: 380px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -64,24 +64,37 @@
 
 @media (max-width: 768px) {
   .footer {
-    flex-direction: column;
-    padding: 1.5rem 1rem;
-    text-align: center;
+    position: relative;
+    width: 100%;
+    margin-left: 0;
     height: auto;
+    padding: 1rem;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   .footer-text {
-    margin-right: 0;
-    margin-bottom: 1rem;
-    text-align: center;
+    /* display: none; */
+    margin-bottom: 15px;
   }
   
   .download-buttons {
-    margin-right: 0;
-    margin-bottom: 1rem;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .ios-button, .android-button {
+    padding: 0.6rem 1rem;
+    font-size: 13px;
   }
   
   .qr-code {
-    margin-left: 0;
+    display: none;
   }
 }

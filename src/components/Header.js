@@ -2,10 +2,6 @@ import React from 'react';
 import '../styles/components/Header.css';
 
 function Header({ onLogoClick }) {
-  const handleLogoClick = () => {
-    window.location.href = '/';
-  };
-
   return (
     <header className="header">
       <div className="logo-container">
@@ -13,17 +9,9 @@ function Header({ onLogoClick }) {
           src="/images/logo.png" 
           alt="Prettying" 
           className="logo" 
-          onClick={handleLogoClick}
-          style={{ cursor: 'pointer' }}
+          onClick={onLogoClick}
         />
-        <span className="web-preview">Web Preview</span>
       </div>
-      <nav className="navigation">
-        <button 
-          className="download-button"
-          onClick={() => window.open("https://prettying.net/home", "_blank")}
-        >Prettying App 바로가기</button>
-      </nav>
     </header>
   );
 }
