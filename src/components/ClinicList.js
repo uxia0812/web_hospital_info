@@ -92,7 +92,7 @@ function HospitalList({ hospitals, selectedHospital, onHospitalSelect }) {
           onClick={() => onHospitalSelect(hospital)}
         >
           <div className="hospital-image">
-            <img src={hospital.image} alt={hospital.name} />
+            <img src={`${hospital.image}`} alt={hospital.name} />
           </div>
           <div className="hospital-info">
             <h3 className="hospital-name">{hospital.name}</h3>
