@@ -13,7 +13,16 @@
 }
 
 @media (max-width: 768px) {
+  .app-container {
+    height: 100vh;
+  }
+
   .main-content {
     flex-direction: column;
+    height: 100vh;
+  }
+
+  .header, .footer {
+    display: none;
   }
 }

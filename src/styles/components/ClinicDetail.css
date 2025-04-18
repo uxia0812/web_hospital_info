@@ -106,8 +106,8 @@
 @media (max-width: 768px) {
   .hospital-detail {
     padding: 1rem;
-    height: auto;
-    max-height: calc(100vh - 370px); /* 헤더, 병원 목록 영역을 고려 */
+    height: 66.67vh;
+    max-height: none;
   }
   
   .content-tabs {
