@@ -2,6 +2,7 @@
 
 # Google API Key
 apikey.js
+.env
   
 # dependencies
 /node_modules

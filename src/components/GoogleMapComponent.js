@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import '../styles/components/GoogleMapComponent.css';
-import apiKey from './apikey';
 
 function GoogleMapComponent({ address }) {
   const mapRef = useRef(null);
@@ -8,7 +7,7 @@ function GoogleMapComponent({ address }) {
   const [isLoading, setIsLoading] = useState(true);
   const [mapInstance, setMapInstance] = useState(null);
   const [scriptLoaded, setScriptLoaded] = useState(false);
-  const key = apiKey;
+  const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
   
   // API 키가 없을 때 대체 지도
   const renderStaticMap = useCallback(() => {
@@ -170,7 +169,7 @@ function GoogleMapComponent({ address }) {
     }
 
     const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${key}&libraries=places`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
     script.async = true;
     script.defer = true;
     
@@ -185,11 +184,11 @@ function GoogleMapComponent({ address }) {
     };
 
     document.head.appendChild(script);
-  }, [key]);
+  }, [apiKey]);
 
   // 스크립트 로드 효과
   useEffect(() => {
-    if (key) {
+    if (apiKey) {
       loadGoogleMapsScript();
     } else {
       renderStaticMap();
@@ -204,7 +203,7 @@ function GoogleMapComponent({ address }) {
         // google.maps.event.clearInstanceListeners(mapInstance);
       }
     };
-  }, [key, loadGoogleMapsScript, renderStaticMap, mapInstance]);
+  }, [apiKey, loadGoogleMapsScript, renderStaticMap, mapInstance]);
 
   // 스크립트 로드 완료 후 지도 초기화
   useEffect(() => {
@@ -251,7 +250,7 @@ function GoogleMapComponent({ address }) {
               <p>지도를 불러오는 중입니다...</p>
             </div>
           )}
-          {!key ? (
+          {!apiKey ? (
             <canvas ref={mapRef} className="google-map-canvas" />
           ) : (
             <div 
