@@ -48,3 +48,5 @@
 - 작업 로그
     - [Notion Log](https://curved-cobalt-671.notion.site/net-Hospital-Info-1d03c4f03a73800fa5baca6be89e55fb?pvs=4)
     - [Google Maps API 오류](https://xia-it.tistory.com/153)
+    - [Vercel 배포 시 API Key 숨기기](https://xia-it.tistory.com/154)
+    
