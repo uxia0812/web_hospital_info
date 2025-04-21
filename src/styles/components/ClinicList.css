@@ -10,11 +10,13 @@
   background-color: #fff;
   z-index: 90;
   box-shadow: 15px 0 20px rgba(0, 0, 0, 0.1);
+  -webkit-overflow-scrolling: touch; /* iOS 스크롤 부드럽게 */
 }
 
 /* 스크롤바 스타일 변경 */
 .hospital-list::-webkit-scrollbar {
   width: 6px;
+  -webkit-appearance: none;
 }
 
 .hospital-list::-webkit-scrollbar-track {
@@ -135,10 +137,13 @@
     position: relative;
     top: 0;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 3px 10px 5px rgba(0, 0, 0, 0.05);
+    overflow-y: scroll; /* 항상 스크롤바가 보이도록 설정 */
+    -webkit-overflow-scrolling: touch; /* iOS에서 스크롤을 더 부드럽게 만들어주는 속성 */
   }
 
   .hospital-list::-webkit-scrollbar {
     width: 8px;
+    -webkit-appearance: none; /* 아이폰 기본 스크롤바 스타일 제거 */
   }
 
   .hospital-list::-webkit-scrollbar-track {
