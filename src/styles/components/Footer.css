@@ -27,7 +27,6 @@
 .download-buttons {
   display: flex;
   justify-content: center;
-  margin-right: 10px;
 }
 
 .ios-button, .android-button {

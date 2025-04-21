@@ -24,9 +24,6 @@ function Footer() {
           Download for Android
         </button>
       </div>
-      <div className="qr-code">
-        <img src="/images/qr.png" alt="QR Code" />
-      </div>
     </footer>
   );
 }
